@@ -1,3 +1,4 @@
+// Link to my photos explaining the homework - https://imgur.com/N0Xxwxe
 require("dotenv").config();
 var Spotify = require('node-spotify-api');
 var keys = require("./keys.js");
@@ -152,3 +153,5 @@ function doWhatItSays() {
     });
 
 }
+
+// Link to my photos explaining the homework - https://imgur.com/N0Xxwxe
