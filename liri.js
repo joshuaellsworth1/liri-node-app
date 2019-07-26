@@ -34,12 +34,11 @@ function searchBand(band) {
     var queryURL = "https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp"
     console.log(queryURL);
 
-    axios.get(queryUrl).then(
+    axios.get(queryURL).then(
         function (response) {
             console.log("Venue:" + response.data.Venue);
-            console.log("Venue Location:" + response.data.Year);
-            console.log("Date:" + response.data.Title);
-
+            console.log("Location URL:" + response.data.url);
+            //I coudn't find the venue location. So I linked it to the url which shows the location when clicked on.
         })
         .catch(function (error) {
             if (error.response) {
@@ -61,11 +60,14 @@ function searchSpotify(song) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
+        
 
-        console.log(data.tracks.items[0].artists[0].name);
-        //add album
-        //add linked to preview
+        console.log("Artist: " + data.tracks.items[0].artists[0].name);
+        console.log("Song: " +data.tracks.items[0].name);
+        console.log("Link: " + data.tracks.items[0].album.external_urls);
+        console.log("Album: " + data.tracks.items[0].album.name);        
     });
+    
 }
 
 function searchOMBD(movie) {
