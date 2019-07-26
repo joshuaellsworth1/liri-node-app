@@ -31,7 +31,29 @@ switch (command) {
 }
 
 function searchBand(band) {
-    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
+    var queryURL = "https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp"
+    console.log(queryURL);
+
+    axios.get(queryUrl).then(
+        function (response) {
+            console.log("Venue:" + response.data.Venue);
+            console.log("Venue Location:" + response.data.Year);
+            console.log("Date:" + response.data.Title);
+
+        })
+        .catch(function (error) {
+            if (error.response) {
+                console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        });
 }
 
 function searchSpotify(song) {
@@ -55,18 +77,24 @@ function searchOMBD(movie) {
     axios.get(queryUrl).then(
         function (response) {
             console.log("Movie Title:" + response.data.Title);
-            console.log(response);
+            console.log("Year:" + response.data.Year);
+            console.log("IMDB Rating:" + response.data.imdbRating);
+            console.log("Metascore:" + response.data.Metascore);
+            console.log("Country of origin:" + response.data.Country);
+            console.log("Language:" + response.data.Language);
+            console.log("Plot:" + response.data.Plot);
+            console.log("Actors:" + response.data.Actors);
         })
         .catch(function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
-                console.log("---------------Data---------------");
-                console.log(error.response.data);
-                console.log("---------------Status---------------");
-                console.log(error.response.status);
-                console.log("---------------Status---------------");
-                console.log(error.response.headers);
+                // console.log("---------------Data---------------");
+                // console.log(error.response.data);
+                // console.log("---------------Status---------------");
+                // console.log(error.response.status);
+                // console.log("---------------Status---------------");
+                // console.log(error.response.headers);
             } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an object that comes back with details pertaining to the error that occurred.
@@ -109,7 +137,7 @@ function doWhatItSays() {
                 break;
 
             case 'spotify-this-song':
-                searchSpotify(dataarr[1]);
+                searchSpotify(dataArr[1]);
                 break;
 
             case `do-what-it-says`:
@@ -119,8 +147,6 @@ function doWhatItSays() {
             default:
                 console.log("Please Enter a valid search");
         }
-    }
+    });
 
-      });
-      
 }
